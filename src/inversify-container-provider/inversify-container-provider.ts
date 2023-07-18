@@ -4,13 +4,17 @@ import createContainer from '../old-code/inversify-container';
 
 @Injectable()
 export class InversifyContainerProvider {
-  private readonly inversifyContainer: Container;
+  private readonly inversifyContainers: Container[];
 
   constructor() {
-    this.inversifyContainer = createContainer();
+    this.inversifyContainers = createContainer();
   }
 
-  getContainer(): Container {
-    return this.inversifyContainer;
+  getContainer<T>(
+    identifier: string | symbol | (new (...args: any[]) => T),
+  ): Container {
+    return this.inversifyContainers.find((container) =>
+      container.isBound(identifier),
+    );
   }
 }

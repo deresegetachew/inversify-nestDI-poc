@@ -9,6 +9,8 @@ export class ServiceLocatorForOldCode {
   ) {}
 
   get<T>(identifier: string | symbol | (new (...args: any[]) => T)): T {
-    return this.inversifyContainerProvider.getContainer().get<T>(identifier);
+    return this.inversifyContainerProvider
+      .getContainer(identifier)
+      .get<T>(identifier);
   }
 }

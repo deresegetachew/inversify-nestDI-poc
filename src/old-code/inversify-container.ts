@@ -13,7 +13,7 @@ function getDynamicValue(): string {
   return `Dynamic Value - ${Math.random()}`;
 }
 
-export function createContainer(): Container {
+export function createContainer(): Container[] {
   const parentContainer = new Container();
 
   // Bind services with different scopes
@@ -40,7 +40,7 @@ export function createContainer(): Container {
 
   // set parent container.
 
-  return parentContainer;
+  return [parentContainer, childContainer];
 }
 
 export default createContainer;
